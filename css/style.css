@@ -12,6 +12,7 @@
 
 .swiper-container {
   width: 100%;
+  max-width: 960px;
   height: 250px;
   align-self: center;
   padding-bottom: 36px;
