@@ -66,12 +66,20 @@
     </div>
   </div>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="./js/InstaLikeSwiperPagination.js"></script>
 <script>
+  // Make pager instance.
+  const pagination = new InstaLikeSwiperPagination();
+
   // Make Swiper.
   new Swiper('.my-swiper', {
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
+      type: 'custom',
+      renderCustom: function (swiper, current, total) {
+        return pagination.render(swiper.slides, current, total);
+      }
     },
     navigation: {
       nextEl: ".swiper-button-next",

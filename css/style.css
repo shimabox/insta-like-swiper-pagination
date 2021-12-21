@@ -33,3 +33,44 @@
 .swiper-button-next, .swiper-button-prev {
   margin-top: -36px; /* paginationを画像の下に表示した分のネガティブマージン */
 }
+
+.swiper-pagination-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-pagination-bullet {
+  margin-right: 10px;
+  background: #ffffff;
+  opacity: .4;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: var(--swiper-pagination-bullet-opacity, 1);
+  background: var(--swiper-pagination-color,var(--swiper-theme-color));
+}
+
+.swiper-pagination-bullet:hover {
+  cursor: pointer;
+}
+
+.swiper-pagination-prev-bullet {
+  width: 5px;
+  height: 5px;
+}
+
+.swiper-pagination-last-prev-bullet {
+  width: 3px;
+  height: 3px;
+}
+
+.swiper-pagination-next-bullet {
+  width: 5px;
+  height: 5px;
+}
+
+.swiper-pagination-last-next-bullet {
+  width: 3px;
+  height: 3px;
+}
