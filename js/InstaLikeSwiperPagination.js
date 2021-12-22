@@ -133,7 +133,6 @@ class InstaLikeSwiperPagination {
   /**
    * 表示開始ページを返す
    * @param {int} current カレントページ
-   * @param {int} prevPageCount 標準ドットの前に表示する前ページに戻るドットの数
    * @return {int}
    */
   _getDisplayStartPage = (current) => {
