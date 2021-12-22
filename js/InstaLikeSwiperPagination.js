@@ -136,7 +136,7 @@ class InstaLikeSwiperPagination {
    * @param {int} prevPageCount 標準ドットの前に表示する前ページに戻るドットの数
    * @return {int}
    */
-   _getDisplayStartPage = (current) => {
+  _getDisplayStartPage = (current) => {
     const max = this.NUMBER_OF_NORMAL_PAGE_DOTS_TO_DISPLAY + this.NUMBER_OF_NEXT_PAGE_DOTS_TO_DISPLAY;
     const startPage = (current + 1) - max;
     if (startPage <= 1) {
@@ -151,7 +151,7 @@ class InstaLikeSwiperPagination {
    * @param {int} prevPageCount 標準ドットの前に表示する前ページに戻るドットの数
    * @return {int}
    */
-   _getDisplayStartPageWhenMoveToPrev = (current, prevPageCount) => {
+  _getDisplayStartPageWhenMoveToPrev = (current, prevPageCount) => {
     return current - prevPageCount;
   }
 
@@ -162,7 +162,7 @@ class InstaLikeSwiperPagination {
    * @param {int} total スライド対象総数
    * @return {int}
    */
-   _getDisplayEndPage = (prevPageCount, displayStartPage, total) => {
+  _getDisplayEndPage = (prevPageCount, displayStartPage, total) => {
     const page = this._getLargestNumberOfPreviousPageDots(prevPageCount, displayStartPage)
                + this.NUMBER_OF_NORMAL_PAGE_DOTS_TO_DISPLAY
                + this.NUMBER_OF_NEXT_PAGE_DOTS_TO_DISPLAY;
@@ -191,7 +191,7 @@ class InstaLikeSwiperPagination {
    *   - 前への移動回数が0以上になった場合0にまるめておく
    * @param {int} current
    */
-   _processingWhenMoveToNextPage = (current) => {
+  _processingWhenMoveToNextPage = (current) => {
     // 次への移動回数を取得して保持
     const numberOfMovesToNext = this._getNumberOfMovesToNext(current);
     if ((this._numberOfMovesToNext + numberOfMovesToNext) > this.NUMBER_OF_NORMAL_PAGE_DOTS_TO_DISPLAY) {
@@ -217,7 +217,7 @@ class InstaLikeSwiperPagination {
    *   - 次への移動回数が0以下になった場合0にまるめておく
    * @param {int} current
    */
-   _processingWhenMoveToPrevPage = (current) => {
+  _processingWhenMoveToPrevPage = (current) => {
     // 前への移動回数を取得して保持
     let numberOfMovesToPrev = this._getNumberOfMovesToPrev(current);
     const bases = this.NUMBER_OF_NORMAL_PAGE_DOTS_TO_DISPLAY * -1;
@@ -239,7 +239,7 @@ class InstaLikeSwiperPagination {
    * 描画を変更する必要があるか
    * @return {boolean}
    */
-   _necessaryDrawingChange = () => {
+  _necessaryDrawingChange = () => {
     if (
       this._numberOfMovesToNext >= this.THRESHOLD_FOR_NOTIFYING_DRAWING_CHANGE_ON_NEXT_MOVE
       || this._numberOfMovesToPrev <= this.THRESHOLD_FOR_NOTIFYING_DRAWING_CHANGE_ON_PREV_MOVE
@@ -254,7 +254,7 @@ class InstaLikeSwiperPagination {
    * @param {int} current カレントページ
    * @return {int}
    */
-   _getPrevPageCountWhenMoveToNext = (current) => {
+  _getPrevPageCountWhenMoveToNext = (current) => {
     if (!this._necessaryDrawingChange()) {
       return 0;
     }
@@ -275,7 +275,7 @@ class InstaLikeSwiperPagination {
    * @param {int} current カレントページ
    * @return {int}
    */
-   _getPrevPageCountWhenMoveToPrev = (current) => {
+  _getPrevPageCountWhenMoveToPrev = (current) => {
     if (!this._necessaryDrawingChange()) {
       return 0;
     }
@@ -297,7 +297,7 @@ class InstaLikeSwiperPagination {
    * @param {int} displayStartPage 表示開始ページ
    * @return {Array<Object>}
    */
-   _createPrevPageStructureWhenMoveToNext = (current, displayStartPage) => {
+  _createPrevPageStructureWhenMoveToNext = (current, displayStartPage) => {
     if (current - 1 < this.NUMBER_OF_NORMAL_PAGE_DOTS_TO_DISPLAY) {
       return [];
     }
@@ -329,7 +329,7 @@ class InstaLikeSwiperPagination {
    * @param {int} displayStartPage 表示開始ページ
    * @return {Array<Object>}
    */
-   _createPrevPageStructureWhenMoveToPrev = (current, displayStartPage) => {
+  _createPrevPageStructureWhenMoveToPrev = (current, displayStartPage) => {
     if (current === 1) {
       return [];
     }
@@ -362,7 +362,7 @@ class InstaLikeSwiperPagination {
    * @param {int} displayEndPage 表示終了ページ
    * @return {int}
    */
-   _getNextPageCount = (prevPageCount, displayStartPage, displayEndPage) => {
+  _getNextPageCount = (prevPageCount, displayStartPage, displayEndPage) => {
     // 前へのページドットの中で一番大きいページの数
     const largestNumberOfPreviousPageDots = this._getLargestNumberOfPreviousPageDots(prevPageCount, displayStartPage);
     // 前へのページドットの中で一番大きいページの数と基本ページドットの数を足す
@@ -388,7 +388,7 @@ class InstaLikeSwiperPagination {
    * @param {int} displayEndPage 表示終了ページ
    * @return {Array<Object>}
    */
-   _createNextPageStructure = (nextPageCount, displayEndPage) => {
+  _createNextPageStructure = (nextPageCount, displayEndPage) => {
     if (nextPageCount === 0) {
       return [];
     }
@@ -492,7 +492,7 @@ class InstaLikeSwiperPagination {
    * @param {int} current
    * @return {int}
    */
-   _getNumberOfMovesToNext = (current) => {
+  _getNumberOfMovesToNext = (current) => {
     return current - this._oldPage;
   }
 
@@ -501,7 +501,7 @@ class InstaLikeSwiperPagination {
    * @param {int} current
    * @return {int}
    */
-   _getNumberOfMovesToPrev = (current) => {
+  _getNumberOfMovesToPrev = (current) => {
     return this._oldPage - current;
   }
 
