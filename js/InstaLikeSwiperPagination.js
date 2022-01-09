@@ -15,6 +15,8 @@ class InstaLikeSwiperPagination {
       -this.NUMBER_OF_NORMAL_PAGE_DOTS_TO_DISPLAY
     );
 
+    this._firstRender = true;
+
     this._oldPage = 1;
 
     this._displayStartPage = 0;
@@ -41,7 +43,7 @@ class InstaLikeSwiperPagination {
    * @return {string}
    */
   render = (slides, current, total) => {
-    this._initializeStructureForRender(total);
+    this._initialize(current, total);
 
     if (this._isTotalNumberOfPagesWithinRangeOfNormalDots(total)) {
       return this._render(
@@ -105,6 +107,44 @@ class InstaLikeSwiperPagination {
       this._displayStartPage,
       this._displayEndPage
     );
+  }
+
+  /**
+   * 各種パラメータの初期化
+   * @param {int} current カレントページ
+   * @param {int} total スライド対象総数
+   */
+  _initialize = (current, total) => {
+    this._initializeOldPageOnFirstRender(current);
+    this._initializesNextAndPrevMovesOnFirstRender(current);
+    this._initializeStructureForRender(total);
+  }
+
+  /**
+   * 初期描画時に前回ページの初期化
+   * @param {int} current カレントページ
+   */
+  _initializeOldPageOnFirstRender = (current) => {
+    if (this._isFirstRender()) {
+      const n = current - 1;
+      this._oldPage = n > 0 ? n : 1;
+    }
+  }
+
+  /**
+   * 初期描画時に次への移動回数と前への移動回数の初期化
+   * @param {int} current カレントページ
+   */
+  _initializesNextAndPrevMovesOnFirstRender = (current) => {
+    if (this._isFirstRender()) {
+      const moved = current - 1;
+      const numberOfMovesToNext = moved >= this.THRESHOLD_FOR_NOTIFYING_DRAWING_CHANGE_ON_NEXT_MOVE
+        ? this.THRESHOLD_FOR_NOTIFYING_DRAWING_CHANGE_ON_NEXT_MOVE
+        : moved;
+      this._numberOfMovesToNext = numberOfMovesToNext;
+      // 前への移動回数に次への移動回数をプラスする
+      this._numberOfMovesToPrev += numberOfMovesToNext;
+    }
   }
 
   /**
@@ -483,6 +523,8 @@ class InstaLikeSwiperPagination {
 
     this._oldPage = current;
 
+    this._firstRender = false;
+
     return html;
   }
 
@@ -502,6 +544,14 @@ class InstaLikeSwiperPagination {
    */
   _getNumberOfMovesToPrev = (current) => {
     return this._oldPage - current;
+  }
+
+  /**
+   * 初期描画か
+   * @return {boolean}
+   */
+  _isFirstRender = () => {
+    return this._firstRender;
   }
 
   /**
